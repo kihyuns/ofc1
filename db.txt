@@ -1,0 +1,21 @@
+-- hspt.hstest definition
+
+CREATE TABLE `hstest` (
+  `mdcl_nstt` varchar(10) DEFAULT NULL,
+  `user_code` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `pssw` varchar(30) DEFAULT NULL,
+  `user_name` varchar(30) DEFAULT NULL,
+  `user_mnmr` varchar(30) DEFAULT NULL,
+  `fflt` varchar(30) DEFAULT NULL,
+  `dprt_dvsn` varchar(20) DEFAULT NULL,
+  `pstn` varchar(20) DEFAULT NULL,
+  `lcns_nmbr` varchar(20) DEFAULT NULL,
+  `spec_nmbr` varchar(20) DEFAULT NULL,
+  `call_nmbr` varchar(20) DEFAULT NULL,
+  `rsdn_nmbr` varchar(20) DEFAULT NULL,
+  `rgst_date` datetime DEFAULT NULL,
+  `rgst_mngr` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `mdfc_date` datetime DEFAULT NULL,
+  `mdfc_mngr` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`user_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
