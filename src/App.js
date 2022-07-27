@@ -26,24 +26,56 @@ const App = () => {
 
 
 
-    const [search, setSearch] = useState([]);
-    useEffect (() => {
+    const [search, setSearch] = useState('');
+
+    useEffect (() => {  
         axios.post('http://localhost:8080/test.json')
-        .then(response => {
-        setSearch(response.data.Data);
+        .then(res => {
+        setSearch(res.data.Data);
+            });
+    }, []);
+
+    
+
+    const onSearch = (e) => {                       //검색기능
+        e.preventDefault();
+            axios.post('http://localhost:8080/test.json', FormData, {
+                headers: { "Content-Type": `application/json`}
+            } ) 
+        .then(res => {
+        console.log(res.data.Data);
         });
-    })
-
-
-
-
-
-
-
-    const onChange = (e) => {
-        setSearch(e.target.value);
         
     }
+
+
+    
+
+    const onChange = (e) => {
+        e.preventDefault();
+        setSearch(e.target.value);
+    };
+
+
+
+    
+
+
+
+    const addData = async(e) => {
+        e.preventDefault();
+        const user_name = useState
+        const res = await axios('http://localhost:8080/test.json', {
+            method: 'POST',
+            data: {'data': user_name},
+            headers: new Headers()
+        })
+        if(res.data.Data){
+            alert('Added Data');
+            return window.location.reload();
+        }
+    }
+
 
 
 
@@ -81,24 +113,19 @@ const App = () => {
     return (
         
         <>
-            <div >                                                {/* 검색창 */}
+            <form onSubmit={(e) => onSearch(e)} >                                                {/* 검색창 */}
                     <label for = 'searchName' className='btn'>사용자명</label> 
+       
+&nbsp;              <input className='inp' id='searchName' onChange={onChange}  placeholder= "이름을 입력해주세요" ></input>
 
-                    
-&nbsp;              <input className='inp' id='searchName' onChange={onChange} value={search}></input>
-
-&nbsp;              <button id='sch' style={{color:'black',backgroundColor:'yellow',border: 'solid blue',  padding:'8px', cursor:'pointer'}}>조회</button>
+&nbsp;              <button type='submit'
+                    style={{color:'black',backgroundColor:'yellow',border: 'solid blue',  padding:'8px', cursor:'pointer'}}>조회</button>
                    
 
 
 
-                    <div style={{float:'right'}}>
-                       <button  className='btn'>신규</button>   {/* 등록(insert)문으로 만들기 */}
-&nbsp;                 <button  className='btn'>수정</button>        {/* 저장문(update)으로 만들기 */}
-&nbsp;                 <button  className='btn'>삭제</button>       {/* 삭제(delet)문으로 만들기 */}   
-                    </div>
 
-            </div>
+            </form>
             <br></br>
 
 
@@ -111,9 +138,16 @@ const App = () => {
                     columnDefs={columnDefs}>       
                 </AgGridReact> 
             </div >
+            
 
-                     
+            <button  onClick={addData} className='btn'>신규</button>   {/* 등록(insert)문으로 만들기 */}
+&nbsp;                 <button  className='btn'>수정</button>        {/* 저장문(update)으로 만들기 */}
+&nbsp;                 <button  className='btn'>삭제</button>       {/* 삭제(delet)문으로 만들기 */}  
                 <porm style={{width:'30%', float:'right'}}>
+                    
+                <div style={{float:'right'}}>
+ 
+                    </div>
                     <label for ='mdcl_nstt' className='pbtn'>의료기관 </label><input id='mdcl_nstt' className='pinp'/>
                     <br/>
                     <label for='user_code'  className='pbtn'>사용자코드</label><input id='user_code' className='pinp'/>
