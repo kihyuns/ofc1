@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.mapper.sample.SampleMapper">
+
+	<select id="testList" parameterType="sampleVO" resultType="egovframework.model.sample.SampleVO">
+
+		SELECT * FROM hstest
+		
+	</select>
+	
+	<select id="see" parameterType="sampleVO" resultType="egovframework.model.sample.SampleVO">
+
+		select * from hstest where user_name like CONCAT('%'#{user_name),'%')
+		
+	</select>
+	
+	<insert id="insertHspt" parameterType="String" >
+		insert into hstest (mdcl_nstt,user_code, pssw ,user_name , user_mnmr , fflt , dprt_dvsn , pstn ,
+		lcns_nmbr,spec_nmbr, call_nmbr,rsdn_nmbr , rgst_date, rgst_mngr , mdfc_date, mdfc_mngr )
+		values(#{mdcl_nstt},#{user_code}, #{pssw} ,#{user_name} , #{user_mnmr} , #{fflt} , #{dprt_dvsn} , #{pstn},
+	    #{lcns_nmbr} ,#{spec_nmbr} , #{call_nmbr} ,#{rsdn_nmbr} ,#{rgst_date} , #{rgst_mngr} , #{mdfc_date} ,#{mdfc_mngr}))
+	</insert>
+	
+	<update id="updateHspt" parameterType="String">
+		update hstest
+		SET mdcl_nstt = #{mdcl_nstt} ,user_code = #{user_code}, pssw = #{pssw}, user_name = #{user_mnmr},
+		user_mnmr = #{user_mnmr} , fflt = #{fflt}, dprt_dvsn = #{dprt_dvsn}, pstn= #{pstn} ,
+		lcns_nmbr= #{lcns_nmbr},spec_nmbr= #{spec_nmbr}, call_nmbr= #{call_nmbr},rsdn_nmbr = #{rsdn_nmbr}
+		where user_code = #{user_code}
+	</update>
+	
+	
+	
+	<delete id="deleteHspt" parameterType="String">
+		delete from hstest where user_code = #{user_code}
+	</delete>
+	
+	
+</mapper>
